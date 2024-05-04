@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 const database = require('../database/connection')
 const UsersController = require('../controllers/UsersController')
 
@@ -7,7 +9,9 @@ class AuthController {
 
         const user = UsersController.get(email)
 
-        if(email == user.email && password == user.password){
+        const verifyPassword = bcrypt.compareSync(password, user.password);
+
+        if(email == user.email && verifyPassword){
             const token = jwt.sign({ id: user.userID }, process.env.SECRET, {
                 expiresIn: 300 // expires in 5min
             });

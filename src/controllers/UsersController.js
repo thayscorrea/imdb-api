@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 const database = require('../database/connection')
 
 class UsersController {
@@ -5,8 +7,11 @@ class UsersController {
     create(request, response){
         const { name, email, password, type } = request.body
 
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+
         database
-        .insert({ name, email, password, type })
+        .insert({ name, email, hash, type })
         .table("users")
         .then(data => {
             response.json({ message: "Usuário inserido com sucesso!" })
