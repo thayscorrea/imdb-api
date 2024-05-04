@@ -23,7 +23,8 @@ router.post("/user/:id", UsersController.delete)
 router.post("/login", AuthController.login)
 router.post("/logout", AuthController.logout)
 
-router.get("/avaliation", AvaliationMovieController.list)
+router.get("/avaliations", AvaliationMovieController.list)
+router.get("/avaliation/:id", AvaliationMovieController.get)
 router.post("/avaliation", AvaliationMovieController.create)
 
 module.exports = router
