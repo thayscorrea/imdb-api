@@ -1,4 +1,5 @@
 const { response } = require('express')
+
 const database = require('../database/connection')
 
 class GenreMovieController {
