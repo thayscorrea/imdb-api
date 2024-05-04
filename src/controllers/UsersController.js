@@ -55,6 +55,17 @@ class UsersController {
         })
     }
 
+    get(email){
+        database
+        .where({ email: email })
+        .select("*")
+        .table("users")
+        .then(data => {
+            response.json(data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
     
 }
 
