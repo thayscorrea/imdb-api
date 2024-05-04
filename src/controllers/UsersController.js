@@ -11,7 +11,7 @@ class UsersController {
         const hash = bcrypt.hashSync(password, salt);
 
         database
-        .insert({ name, email, hash, type })
+        .insert({ name, email, password: hash, type })
         .table("users")
         .then(data => {
             response.json({ message: "Usuário inserido com sucesso!" })
@@ -60,7 +60,10 @@ class UsersController {
         })
     }
 
-    get(email){
+    get(request, response){
+
+        const { email } = request.body
+
         database
         .where({ email: email })
         .select("*")

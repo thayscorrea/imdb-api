@@ -14,6 +14,7 @@ router.get("/movie", MoviesController.list)
 router.post("/movie", MoviesController.create)
 
 router.get("/users", UsersController.list)
+router.get("/user", UsersController.get)
 router.post("/user", UsersController.create)
 router.put("/user/:id", UsersController.update)
 router.post("/user/:id", UsersController.delete)
