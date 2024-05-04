@@ -4,9 +4,9 @@ const GenreMovieController = require('../controllers/GenreMovieController')
 class MoviesController {
 
     create(request, response){
-        const { name, year, duration, sinopse, avaliation, image, genres } = request.body
+        const { name, year, duration, sinopse, image, genres } = request.body
 
-        database.insert({ name, year, duration, sinopse, avaliation, image })
+        database.insert({ name, year, duration, sinopse, image })
         .table("movies")
         .then(data => {
             const movieID = data[0]

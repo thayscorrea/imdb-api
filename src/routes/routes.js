@@ -6,6 +6,7 @@ const GenresController = require('../controllers/GenresController')
 const MoviesController = require('../controllers/MoviesController')
 const UsersController = require('../controllers/UsersController')
 const AuthController = require('../controllers/AuthController')
+const AvaliationMovieController = require('../controllers/AvaliationMovieController')
 
 router.get("/genres", GenresController.list)
 router.post("/genres", GenresController.create)
@@ -21,5 +22,8 @@ router.post("/user/:id", UsersController.delete)
 
 router.post("/login", AuthController.login)
 router.post("/logout", AuthController.logout)
+
+router.get("/avaliation", AvaliationMovieController.list)
+router.post("/avaliation", AvaliationMovieController.create)
 
 module.exports = router
