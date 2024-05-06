@@ -74,6 +74,21 @@ class UsersController {
             console.log(error)
         })
     }
+
+    getUser(request, response){
+
+        const { id } = request.params
+
+        database
+        .where({ userID: id })
+        .select("*")
+        .table("users")
+        .then(data => {
+            response.json(data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
     
 }
 

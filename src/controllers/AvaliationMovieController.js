@@ -25,7 +25,6 @@ class AvaliationMovieController {
     }
 
     get(request, response){
-
         const { id } = request.param
 
         database

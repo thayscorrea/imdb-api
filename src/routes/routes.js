@@ -9,14 +9,15 @@ const AuthController = require('../controllers/AuthController')
 const AvaliationMovieController = require('../controllers/AvaliationMovieController')
 
 router.get("/genres", GenresController.list)
-router.post("/genres", GenresController.create)
+router.post("/genre", GenresController.create)
 
-router.get("/movie", MoviesController.list)
+router.get("/movies", MoviesController.list)
 router.post("/movie", MoviesController.create)
 
 router.get("/users", UsersController.list)
 router.get("/user", UsersController.get)
 router.post("/user", UsersController.create)
+router.get("/user/:id", UsersController.getUser)
 router.put("/user/:id", UsersController.update)
 router.post("/user/:id", UsersController.delete)
 
