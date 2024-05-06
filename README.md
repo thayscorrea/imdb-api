@@ -6,7 +6,6 @@
 
 - Get the `database.sql` file in the /src/database folder and run it in the mysql database of your choice (Workbench, PHP MyAdmin...)
 
-- 
 
 ## About the API
 
