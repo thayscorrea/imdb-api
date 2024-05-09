@@ -17,8 +17,13 @@ class GenreMovieController {
     }
 
     list(request, response){
-        database.select("*")
+
+        const { id }= request.params
+
+        database.select("name")
         .table("genres_movies")
+        .innerJoin("genres", "genres.generID", "genres_movies.generID")
+        .where({ movieID: id })
         .then(data => {
             response.json(data)
         }).catch(error => {

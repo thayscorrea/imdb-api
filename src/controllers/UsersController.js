@@ -22,11 +22,11 @@ class UsersController {
 
     update(request, response){
         const { id } = request.params
-        const { password, type } = request.body
+        const { name, email, type } = request.body
 
         database
-        .where({ id: id })
-        .update({ password, type })
+        .where({ userID: id })
+        .update({ name, email, type })
         .table("users")
         .then(data => {
             response.json({ message: "Usuário atualizado com sucesso!" })
@@ -39,11 +39,25 @@ class UsersController {
         const { id } = request.params
 
         database
-        .where({ id: id })
+        .where({ userID: id })
         .update({ delete_at: new Date() })
         .table("users")
         .then(data => {
             response.json({ message: "Usuário removido com sucesso!" })
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    enable(request, response){
+        const { id } = request.params
+
+        database
+        .where({ userID: id })
+        .update({ delete_at: null })
+        .table("users")
+        .then(data => {
+            response.json({ message: "Usuário ativado com sucesso!" })
         }).catch(error => {
             console.log(error)
         })
@@ -85,6 +99,22 @@ class UsersController {
         .table("users")
         .then(data => {
             response.json(data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    resetPassword(request, response){
+        const { id } = request.params
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync('12345678', salt);
+
+        database
+        .where({ userID: id })
+        .update({ password: hash })
+        .table("users")
+        .then(data => {
+            response.json({ message: "Senha resetada com sucesso!" })
         }).catch(error => {
             console.log(error)
         })
