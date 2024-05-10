@@ -23,11 +23,11 @@ class MoviesController {
 
     update(request, response) {
         const { id } = request.params
-        const { name, year, time, sinopse, image, genres } = request.body
+        const { name, year, time, sinopse, image } = request.body
 
         database
             .where({ movieID: id })
-            .update({ name, year, time, sinopse, image, genres })
+            .update({ name, year, time, sinopse, image })
             .table("movies")
             .then(data => {
                 response.json({ message: "Filme atualizado com sucesso!" })
