@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "4761e6d2-982b-4c78-925b-f4f042215fc3",
+		"name": "Globo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9327332"
+	},
+	"item": [
+		{
+			"name": "Listar gêneros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}genres",
+					"host": [
+						"{{domain}}genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar gênero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"História\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}genre",
+					"host": [
+						"{{domain}}genre"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar os gêneros de um filme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}movie/genres/1",
+					"host": [
+						"{{domain}}movie"
+					],
+					"path": [
+						"genres",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os filmes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}movies",
+					"host": [
+						"{{domain}}movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar filme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}movie/1",
+					"host": [
+						"{{domain}}movie"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Filme",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}movie/delete/18",
+					"host": [
+						"{{domain}}movie"
+					],
+					"path": [
+						"delete",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@user.com\",\n    \"password\": \"12345678@2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}login",
+					"host": [
+						"{{domain}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca geral do site",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"input\": \"game of thrones\",\n    \"filter\": \"0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/search",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os usuários",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"thays.lacerdac@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}users",
+					"host": [
+						"{{domain}}users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuário por email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"thays.lacerdac@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}user",
+					"host": [
+						"{{domain}}user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuário por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}user/1",
+					"host": [
+						"{{domain}}user"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ativar usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"thays.lacerdac@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}user/enable/1",
+					"host": [
+						"{{domain}}user"
+					],
+					"path": [
+						"enable",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Desativar usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"thays.lacerdac@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}user/disable/1",
+					"host": [
+						"{{domain}}user"
+					],
+					"path": [
+						"disable",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas as avaliações dadas por cada usuário a cada filme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}evaluations/movies",
+					"host": [
+						"{{domain}}evaluations"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8000/",
+			"type": "string"
+		}
+	]
+}
