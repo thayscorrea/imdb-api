@@ -6,7 +6,8 @@ class MoviesController {
     create(request, response) {
         const { name, year, time, sinopse, image, genres, directors, actors } = request.body
 
-        database.insert({ name, year, time, sinopse, image, directors, actors })
+        database
+            .insert({ name, year, time, sinopse, image, directors, actors })
             .table("movies")
             .then(data => {
                 const movieID = data[0]
@@ -23,13 +24,19 @@ class MoviesController {
 
     update(request, response) {
         const { id } = request.params
-        const { name, year, time, sinopse, image, directors, actors } = request.body
+        const { name, year, time, sinopse, image, genres, directors, actors } = request.body
 
         database
             .where({ movieID: id })
             .update({ name, year, time, sinopse, image, directors, actors })
             .table("movies")
             .then(data => {
+                const movieID = data[0]
+
+                genres.map((generID) => (
+                    GenreMovieController.create({ movieID, generID })
+                ))
+                
                 response.json({ message: "Filme atualizado com sucesso!" })
             }).catch(error => {
                 console.log(error)

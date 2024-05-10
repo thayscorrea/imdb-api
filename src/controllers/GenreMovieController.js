@@ -7,6 +7,11 @@ class GenreMovieController {
     create(request){
         const { movieID, generID } = request
 
+        database
+        .table("genres_movies")
+        .where({ movieID })
+        .delete()
+
         database.insert({ movieID, generID })
         .table("genres_movies")
         .then(data => {
