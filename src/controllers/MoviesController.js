@@ -37,13 +37,13 @@ class MoviesController {
     }
 
     async list(request, response) {
-        const arr =  await database
+        const arr = await database
             .select("movies.*")
             .avg("evaluation_movies.evaluation", { as: "evaluation" })
             .from("movies")
             .leftJoin("evaluation_movies", "evaluation_movies.movieID", "movies.movieID")
             .groupBy("movies.movieID")
-            
+
         response.json(arr)
     }
 
