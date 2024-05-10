@@ -12,3 +12,4 @@
 - REST API in Node
 - API running on port 8000
 - Movie images are saved in the local directory /public/uploads
+- The `Globo.postman_collection.json` file at the root of the project contains the mapping of some routes. Just enter it into Postman
