@@ -80,6 +80,60 @@ class MoviesController {
                 console.log(error)
             })
     }
+
+    search(request, response){
+        const { input, filter } = request.body
+
+        switch(filter){
+            case 'directors':
+                database
+                .table("movies")
+                .select("movieID")
+                .whereLike('directors', `%${input}%`)
+                .then(data => {
+                    response.json(data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            break;
+            case 'movie':
+                database
+                .table("movies")
+                .select("movieID")
+                .whereLike('name', `%${input}%`)
+                .then(data => {
+                    response.json(data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            break;
+            case 'actors':
+                database
+                .table("movies")
+                .select("movieID")
+                .whereLike('actors', `%${input}%`)
+                .then(data => {
+                    response.json(data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            break;
+            default:
+                database
+                .table("movies")
+                .select("movieID")
+                .whereLike('name', `%${input}%`)
+                .orWhereLike('actors', `%${input}%`)
+                .orWhereLike('directors', `%${input}%`)
+                .first()
+                .then(data => {
+                    response.json(data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            break;
+        }
+    }
 }
 
 module.exports = new MoviesController()
