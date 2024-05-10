@@ -37,5 +37,6 @@ router.get("/evaluations", EvaluationMovieController.list)
 router.get("/evaluation/:id", EvaluationMovieController.get)
 router.get("/evaluation/votes/:id", EvaluationMovieController.evaluation)
 router.post("/evaluation", EvaluationMovieController.create)
+router.get("/evaluations/movies", EvaluationMovieController.evaluationMovies)
 
 module.exports = router

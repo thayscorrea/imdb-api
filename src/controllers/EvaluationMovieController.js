@@ -51,6 +51,19 @@ class EvaluationMovieController {
             console.log(error)
         })
     }
+
+    evaluationMovies(request, response){
+        database
+        .select("users.name as nameUser", "movies.name as nameMovie", "evaluation_movies.evaluation")
+        .from("evaluation_movies")
+        .innerJoin("users", "users.userID", "evaluation_movies.userID")
+        .innerJoin("movies", "movies.movieID", "evaluation_movies.movieID")
+        .then(data => {
+            response.json(data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 }
 
 module.exports = new EvaluationMovieController()
