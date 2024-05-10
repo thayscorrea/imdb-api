@@ -12,9 +12,10 @@ const EvaluationMovieController = require('../controllers/EvaluationMovieControl
 router.get("/genres", GenresController.list)
 router.post("/genre", GenresController.create)
 
-router.get("/movie/movie/:id", GenreMovieController.list)
+router.get("/movie/genres/:id", GenreMovieController.list)
 
 router.get("/movies", MoviesController.list)
+router.get("/movie/:id", MoviesController.get)
 router.post("/movie", MoviesController.create)
 router.put("/movie/:id", MoviesController.update)
 router.post("/movie/delete/:id", MoviesController.delete)

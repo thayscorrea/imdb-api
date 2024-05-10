@@ -9,19 +9,19 @@ class AuthController {
         const { email, password } = request.body
 
          database
-        .where({ email: email })
         .select("*")
         .table("users")
+        .where({ email: email })
         .then(data => {
             data = data[0]
             const verifyPassword = bcrypt.compareSync(password, data.password);
     
             if(email == data.email && verifyPassword){
                 const token = jwt.sign({ id: data.userID }, 'mysecret', {
-                    expiresIn: 300 // expires in 5min
+                    expiresIn: 30000 // expires in 5min
                 });
     
-                response.json({ auth: true, token: token })
+                response.json({ auth: true, token: token, isAdmin: data.type, userID: data.userID })
             }else{
                 response.json({ message: "E-mail ou Senha incorretos!" })
             }

@@ -4,9 +4,9 @@ const GenreMovieController = require('../controllers/GenreMovieController')
 class MoviesController {
 
     create(request, response) {
-        const { name, year, time, sinopse, image, genres } = request.body
+        const { name, year, time, sinopse, image, genres, directors, actors } = request.body
 
-        database.insert({ name, year, time, sinopse, image })
+        database.insert({ name, year, time, sinopse, image, directors, actors })
             .table("movies")
             .then(data => {
                 const movieID = data[0]
@@ -23,11 +23,11 @@ class MoviesController {
 
     update(request, response) {
         const { id } = request.params
-        const { name, year, time, sinopse, image } = request.body
+        const { name, year, time, sinopse, image, directors, actors } = request.body
 
         database
             .where({ movieID: id })
-            .update({ name, year, time, sinopse, image })
+            .update({ name, year, time, sinopse, image, directors, actors })
             .table("movies")
             .then(data => {
                 response.json({ message: "Filme atualizado com sucesso!" })
@@ -43,6 +43,19 @@ class MoviesController {
             .from("movies")
             .leftJoin("evaluation_movies", "evaluation_movies.movieID", "movies.movieID")
             .groupBy("movies.movieID")
+
+        response.json(arr)
+    }
+
+    async get(request, response) {
+        const { id } = request.params
+
+        const arr = await database
+            .select("movies.*")
+            .avg("evaluation_movies.evaluation", { as: "evaluation" })
+            .from("movies")
+            .leftJoin("evaluation_movies", "evaluation_movies.movieID", "movies.movieID")
+            .where({ "movies.movieID": id })
 
         response.json(arr)
     }

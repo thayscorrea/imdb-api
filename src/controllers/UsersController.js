@@ -107,7 +107,7 @@ class UsersController {
     resetPassword(request, response){
         const { id } = request.params
         const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync('12345678', salt);
+        const hash = bcrypt.hashSync('12345678@2024', salt);
 
         database
         .where({ userID: id })

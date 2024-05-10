@@ -3,6 +3,7 @@ require("dotenv-safe").config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
 
 const router = require('./src/routes/routes')
 
@@ -10,8 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(router)
-
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
 
 app.listen(8000, () => {
     console.log("Aplicação executando na porta 8000")
