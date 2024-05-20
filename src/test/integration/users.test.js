@@ -80,8 +80,71 @@ describe('PUT /user', function () {
     });
 });
 
+describe('POST /user/disable/:id', function () {
+    it('should disable a new user', async function () {
+        let newUser = await request(url)
+            .get('user')
+            .send({
+                email: 'teste-api@gmail.com'
+            })
+            .set('Accept', 'application/json');
+
+        newUser = newUser.body[0]
+
+        request(url)
+            .post('user/disable/' + newUser.userID)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .then(response => {
+                expect(response.body).toHaveProperty('message');
+            });
+    });
+});
+
+describe('POST /user/enable/:id', function () {
+    it('should enable a new user', async function () {
+        let newUser = await request(url)
+            .get('user')
+            .send({
+                email: 'teste-api@gmail.com'
+            })
+            .set('Accept', 'application/json');
+
+        newUser = newUser.body[0]
+
+        request(url)
+            .post('user/enable/' + newUser.userID)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .then(response => {
+                expect(response.body).toHaveProperty('message');
+            });
+    });
+});
+
+describe('POST /user/reset/:id', function () {
+    it('should reset password a new user', async function () {
+        let newUser = await request(url)
+            .get('user')
+            .send({
+                email: 'teste-api@gmail.com'
+            })
+            .set('Accept', 'application/json');
+
+        newUser = newUser.body[0]
+
+        request(url)
+            .post('user/reset/' + newUser.userID)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .then(response => {
+                expect(response.body).toHaveProperty('message');
+            });
+    });
+});
+
 describe('POST /user/delete/:id', function () {
-    it('should delete user match for id = 7', async function () {
+    it('should delete a new user', async function () {
         let newUser = await request(url)
             .get('user')
             .send({
