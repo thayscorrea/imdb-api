@@ -35,6 +35,20 @@ class UsersController {
         })
     }
 
+    deleteUser(request, response){
+        const { id } = request.params
+
+        database
+        .where({ userID: id })
+        .table("users")
+        .delete()
+        .then(data => {
+            response.json({ message: "Usuário excluído permanentemente com sucesso!" })
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     delete(request, response){
         const { id } = request.params
 
