@@ -1,6 +1,24 @@
 const request = require('supertest');
 const url = 'http://localhost:8000/'
 
+describe('POST /user', function () {
+    it('should register a new user', function () {
+        request(url)
+            .post('user')
+            .send({
+                name: 'Teste API',
+                email: 'teste-api@gmail.com',
+                password: 'Teste@1234',
+                type: 0
+            })
+            .set('Accept', 'application/json')
+            .expect(200)
+            .then(response => {
+                expect(response.body).toHaveProperty('message');
+            });
+    });
+});
+
 describe('GET /users', function () {
     it('should return all users', function () {
         request(url)
@@ -36,25 +54,7 @@ describe('GET /user/id', function () {
     });
 });
 
-describe('POST /user', function () {
-    it('should register a new user', function () {
-        request(url)
-            .post('user')
-            .send({
-                name: 'Teste API',
-                email: 'teste-api@gmail.com',
-                password: 'Teste@1234',
-                type: 0
-            })
-            .set('Accept', 'application/json')
-            .expect(200)
-            .then(response => {
-                expect(response.body).toHaveProperty('message');
-            });
-    });
-});
-
-describe('PUT /user', function () {
+describe('PUT /user/id', function () {
     it('should edit new user', async function () {
         let newUser = await request(url)
             .get('user')

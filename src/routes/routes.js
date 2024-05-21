@@ -16,6 +16,7 @@ router.get("/movie/genres/:id", GenreMovieController.list)
 
 router.get("/movies", MoviesController.list)
 router.get("/movie/:id", MoviesController.get)
+router.post("/movie/getByName", MoviesController.getByName)
 router.post("/movie", MoviesController.create)
 router.put("/movie/:id", MoviesController.update)
 router.post("/movie/delete/:id", MoviesController.delete)

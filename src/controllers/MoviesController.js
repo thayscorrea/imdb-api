@@ -16,7 +16,7 @@ class MoviesController {
                     GenreMovieController.create({ movieID, generID })
                 ))
 
-                response.json({ message: "Filme inserido com sucesso!" })
+                response.json({ message: "Filme inserido com sucesso!", movieID })
             }).catch(error => {
                 console.log(error)
             })
@@ -57,12 +57,30 @@ class MoviesController {
     async get(request, response) {
         const { id } = request.params
 
-        const arr = await database
+        database
             .select("movies.*")
             .avg("evaluation_movies.evaluation", { as: "evaluation" })
             .from("movies")
             .leftJoin("evaluation_movies", "evaluation_movies.movieID", "movies.movieID")
             .where({ "movies.movieID": id })
+            .then(data => {
+                if(data[0].movieID !== null){
+                    response.json(data)
+                }
+
+                response.json([])
+            }).catch(error => {
+                console.log(error)
+            })
+    }
+
+    async getByName(request, response) {
+        const { name } = request.body
+
+        const arr = await database
+            .select("*")
+            .from("movies")
+            .where({ name })
 
         response.json(arr)
     }
