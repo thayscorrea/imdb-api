@@ -35,6 +35,21 @@ class GenreMovieController {
             console.log(error)
         })
     }
+
+    delete(request, response){
+
+        const { id }= request.params
+
+        database
+        .table("genres_movies")
+        .where({ movieID: id })
+        .delete()
+        .then(data => {
+            response.json({ message: "Generos do filme excluídos com sucesso!" })
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 }
 
 module.exports = new GenreMovieController()
